@@ -7,8 +7,22 @@ export const fetchData = async ()=>{
         const { data: {confirmed, recovered, deaths, lastUpdate } } = await axios.get(API_URL);
 
         return { confirmed, recovered, deaths, lastUpdate };
-
     } catch (error){
-
+        console.log(error);
     }
 };
+export const fetchDailyDate = async ()=>{
+    try {
+        const { data } = await axios.get(`${API_URL}/daily`)
+
+        const mofifiadData = data.map(daileData => ({
+            confirmed: daileData.confirmed.total,
+            deaths: daileData.deaths.total,
+            date: daileData.reportDate
+        }));
+
+        return mofifiadData;
+    } catch (error){
+        console.log(error);
+    }
+}

@@ -1,2 +1,3 @@
 # coronavirus-tracker
-check number od infected, recovered and deaths in Your country
+check number infected, recovered and deaths in Your country
+React.js, Material UI, Charts js

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchDailyDate} from "../../api";
 import { Line, Bar } from "react-chartjs-2";
-import style from './Chart.module.css';
+import style from './Chart.module.scss';
 
 function Chart({ data: { confirmed, deaths, recovered }, country}) {
     const [dailyData, setDailyData] = useState([]);

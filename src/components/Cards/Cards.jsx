@@ -35,7 +35,7 @@ function Cards({data: {confirmed, recovered, deaths, lastUpdate}}) {
         <div className={style.container}>
             <Grid container spacing={3} justify='center'>
                 {cards.map(card => (
-                    <Grid item component={Card} xs={12} md={3} className={cx(style.card, card.class)}>
+                    <Grid key={card.label} item component={Card} xs={12} md={3} className={cx(style.card, card.class)}>
                         <CardContent>
                             <Typography color='textSecondary' gutterBottom>{card.label}</Typography>
                             <Typography variant='h5'>

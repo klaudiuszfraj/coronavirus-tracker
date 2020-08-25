@@ -26,10 +26,24 @@ class App extends Component {
         const { data, country } =this.state;
         return (
             <div className={style.container}>
+                {/*Header*/}
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
+
+                {/*Cards*/}
                 <Cards data={data}/>
+
+                {/*Dropdown*/}
                 <CountryPicker changeCountry={this.handleCountryChange}/>
+
+                {/*Map*/}
+
+                {/*Table global deaths/recovers in country*/}
+
+                {/*Table cases by country*/}
+
+                {/*Cart with case*/}
                 <Chart data={data} country={country}/>
+
             </div>
         );
     }

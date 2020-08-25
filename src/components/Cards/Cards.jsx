@@ -3,7 +3,7 @@ import {Card, CardContent, Typography, Grid} from "@material-ui/core";
 import CountUp from "react-countup";
 import cx from 'classnames';
 
-import style from './Cards.module.css'
+import style from './Cards.module.scss'
 
 
 function Cards({data: {confirmed, recovered, deaths, lastUpdate}}) {
@@ -11,49 +11,44 @@ function Cards({data: {confirmed, recovered, deaths, lastUpdate}}) {
     if (!confirmed) {
         return 'Loading...';
     }
-
+    const cards = [
+        {
+            class: style.infected,
+            label: 'Infected',
+            value: confirmed.value,
+            text: 'Number of active cases of COVID-19'
+        },
+        {
+            class: style.recovered,
+            label: 'Recovered',
+            value: recovered.value,
+            text: 'Number of recoveries from COVID-19'
+        },
+        {
+            class: style.deaths,
+            label: 'Deaths',
+            value: deaths.value,
+            text: 'Number of deaths caused by COVID-19'
+        }
+    ]
     return (
         <div className={style.container}>
             <Grid container spacing={3} justify='center'>
-                <Grid item component={Card} xs={12} md={3} className={cx(style.card, style.infected)}>
-                    <CardContent>
-                        <Typography color='textSecondary' gutterBottom>Infected</Typography>
-                        <Typography variant='h5'>
-                            <CountUp end={confirmed.value}
-                                     start={0}
-                                     duration={2.5}
-                                     separator={','}/>
-                        </Typography>
-                        <Typography color='textSecondary'>{new Date(lastUpdate).toLocaleDateString()}</Typography>
-                        <Typography variant='body2'>Number of active cases of COVID-19</Typography>
-                    </CardContent>
-                </Grid>
-                <Grid item component={Card} xs={12} md={3} className={cx(style.card, style.recovered)}>
-                    <CardContent>
-                        <Typography color='textSecondary' gutterBottom>Recovered</Typography>
-                        <Typography variant='h5'>
-                            <CountUp end={recovered.value}
-                                     start={0}
-                                     duration={2.5}
-                                     separator={','}/>
-                        </Typography>
-                        <Typography color='textSecondary'>{new Date(lastUpdate).toLocaleDateString()}</Typography>
-                        <Typography variant='body2'>Number of recoveries from COVID-19</Typography>
-                    </CardContent>
-                </Grid>
-                <Grid item component={Card} xs={12} md={3} className={cx(style.card, style.deaths)}>
-                    <CardContent>
-                        <Typography color='textSecondary' gutterBottom>Deaths</Typography>
-                        <Typography variant='h5'>
-                            <CountUp end={deaths.value}
-                                     start={0}
-                                     duration={2.5}
-                                     separator={','}/>
-                        </Typography>
-                        <Typography color='textSecondary'>{new Date(lastUpdate).toLocaleDateString()}</Typography>
-                        <Typography variant='body2'>Number of deaths caused by COVID-19</Typography>
-                    </CardContent>
-                </Grid>
+                {cards.map(card => (
+                    <Grid item component={Card} xs={12} md={3} className={cx(style.card, card.class)}>
+                        <CardContent>
+                            <Typography color='textSecondary' gutterBottom>{card.label}</Typography>
+                            <Typography variant='h5'>
+                                <CountUp end={card.value}
+                                         start={0}
+                                         duration={2.5}
+                                         separator={','}/>
+                            </Typography>
+                            <Typography color='textSecondary'>{new Date(lastUpdate).toLocaleDateString()}</Typography>
+                            <Typography variant='body2'>{card.text}</Typography>
+                        </CardContent>
+                    </Grid>
+                ))}
             </Grid>
 
         </div>

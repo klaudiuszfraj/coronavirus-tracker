@@ -1,11 +1,14 @@
 import axios from 'axios';
 
-const API_URL = 'https://covid19.mathdro.id/api';
+const API_URL1 = 'https://covid19.mathdro.id/api';
+const API_URL = 'https://disease.sh/v3/covid-19';
+
 
 export const fetchData = async (country)=>{
-    let changeApiUrl = API_URL;
+    console.log('fetch data api');
+    let changeApiUrl = API_URL1;
     if (country){
-        changeApiUrl = `${API_URL}/countries/${country}`
+        changeApiUrl = `${API_URL1}/countries/${country}`
     }
 
     try {
@@ -17,8 +20,9 @@ export const fetchData = async (country)=>{
     }
 };
 export const fetchDailyDate = async ()=>{
+    console.log('fetch data daily api');
     try {
-        const { data } = await axios.get(`${API_URL}/daily`)
+        const { data } = await axios.get(`${API_URL1}/daily`)
 
         const mofifiadData = data.map(daileData => ({
             confirmed: daileData.confirmed.total,
@@ -34,11 +38,19 @@ export const fetchDailyDate = async ()=>{
 
 export const fetchCountries = async ()=>{
     try {
-        const { data: { countries } } = await axios.get(`${API_URL}/countries`);
-         return countries.map(country => country.name);
-
-
+        const {data} = await axios.get(`${API_URL}/countries`);
+        return data.map(countries=>countries.country);
     } catch (error){
         console.log(error);
     }
+
+
+    // try {
+    //     const { data: { countries } } = await axios.get(`${API_URL}/countries`);
+    //      return countries.map(country => country.name);
+    //
+    //
+    // } catch (error){
+    //     console.log(error);
+    // }
 }

@@ -42,7 +42,7 @@ class App extends Component {
                 {/*Table cases by country*/}
 
                 {/*Cart with case*/}
-                <Chart data={data} country={country}/>
+                {/*<Chart data={data} country={country}/>*/}
 
             </div>
         );

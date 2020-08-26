@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NativeSelect, FormControl } from "@material-ui/core";
+import { NativeSelect, FormControl, FormHelperText } from "@material-ui/core";
 import { fetchCountries } from "../../api";
 
 import style from './CountryPicker.module.scss';
@@ -21,6 +21,7 @@ function CountryPicker({ changeCountry }) {
             <option value=''>Global</option>
             {fetchedCountries.map(country => <option key={country} value={country}>{country}</option>)}
         </NativeSelect>
+        <FormHelperText>Choose country</FormHelperText>
     </FormControl>
  );
 }

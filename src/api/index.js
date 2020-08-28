@@ -13,9 +13,8 @@ export const fetchData = async (country= "global")=>{
 
     try {
         const {data} = await axios.get(`${changeApiUrl}`);
-        const { cases, active, critical, deaths, recovered, tests, updated } =data
-        console.log('data from all',data);
-        return { cases, recovered, deaths, updated };
+        console.log('data from fetchData',data);
+        return data;
     } catch (error){
         console.log(error);
     }

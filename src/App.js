@@ -5,6 +5,7 @@ import style from './App.module.scss';
 import coronaImage from './images/image.png'
 import { fetchData, fetchCountriesInfo } from "./api";
 import TableCountries from "./components/TableCountries/TableCountries";
+import LineGraph from "./components/LineGraph/LineGraph";
 
 class App extends Component {
     state = {
@@ -46,9 +47,9 @@ class App extends Component {
 
                 {/*Table cases by country*/}
                 <TableCountries countriesInfo={this.state.countriesInfo}/>
-
+                <LineGraph/>
                 {/*Cart with case*/}
-                {/*<Chart data={data} country={country}/>*/}
+                <Chart data={data} country={country}/>
 
             </div>
         );

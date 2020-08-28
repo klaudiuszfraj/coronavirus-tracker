@@ -45,7 +45,7 @@ class App extends Component {
                 {/*Table global deaths/recovers in country*/}
 
                 {/*Table cases by country*/}
-                <TableCountries/>
+                <TableCountries countriesInfo={this.state.countriesInfo}/>
 
                 {/*Cart with case*/}
                 {/*<Chart data={data} country={country}/>*/}

@@ -6,28 +6,27 @@ import cx from 'classnames';
 import style from './Cards.module.scss'
 
 
-function Cards({data: {confirmed, recovered, deaths, lastUpdate}}) {
-    console.log(confirmed);
-    if (!confirmed) {
+function Cards({data: {cases, recovered, deaths, updated}}) {
+    if (!cases) {
         return 'Loading...';
     }
     const cards = [
         {
             class: style.infected,
             label: 'Infected',
-            value: confirmed.value,
+            value: cases,
             text: 'Number of active cases of COVID-19'
         },
         {
             class: style.recovered,
             label: 'Recovered',
-            value: recovered.value,
+            value: recovered,
             text: 'Number of recoveries from COVID-19'
         },
         {
             class: style.deaths,
             label: 'Deaths',
-            value: deaths.value,
+            value: deaths,
             text: 'Number of deaths caused by COVID-19'
         }
     ]
@@ -44,7 +43,7 @@ function Cards({data: {confirmed, recovered, deaths, lastUpdate}}) {
                                          duration={2.5}
                                          separator={','}/>
                             </Typography>
-                            <Typography color='textSecondary'>{new Date(lastUpdate).toLocaleDateString()}</Typography>
+                            <Typography color='textSecondary'>{new Date(updated).toLocaleDateString()}</Typography>
                             <Typography variant='body2'>{card.text}</Typography>
                         </CardContent>
                     </Grid>

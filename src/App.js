@@ -3,17 +3,22 @@ import React, {Component} from 'react';
 import { Cards, Chart, CountryPicker } from "./components";
 import style from './App.module.scss';
 import coronaImage from './images/image.png'
-import { fetchData } from "./api";
+import { fetchData, fetchCountriesInfo } from "./api";
+import TableCountries from "./components/TableCountries/TableCountries";
 
 class App extends Component {
     state = {
         data: {},
-        country: ''
+        country: '',
+        countriesInfo: []
     }
 
     async componentDidMount() {
         const fetchedData = await fetchData();
-        this.setState({ data: fetchedData })
+        this.setState({ data: fetchedData });
+
+        const fetchedCountriesInfo = await fetchCountriesInfo();
+        this.setState({ countriesInfo: fetchedCountriesInfo })
     }
 
     handleCountryChange = async (country)=>{
@@ -33,16 +38,17 @@ class App extends Component {
                 <Cards data={data}/>
 
                 {/*Dropdown*/}
-                <CountryPicker changeCountry={this.handleCountryChange}/>
+                <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={this.state.countriesInfo}/>
 
                 {/*Map*/}
 
                 {/*Table global deaths/recovers in country*/}
 
                 {/*Table cases by country*/}
+                <TableCountries/>
 
                 {/*Cart with case*/}
-                <Chart data={data} country={country}/>
+                {/*<Chart data={data} country={country}/>*/}
 
             </div>
         );

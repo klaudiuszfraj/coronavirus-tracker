@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { NativeSelect, FormControl, FormHelperText } from "@material-ui/core";
-import { fetchCountriesList } from "../../api";
 
 import style from './CountryPicker.module.scss';
 
-function CountryPicker({ changeCountry }) {
+function CountryPicker({ changeCountry, countriesInfo }) {
     const [fetchedCountries, setFetchedCountries] = useState([]);
 
-    useEffect(() => {
-        const fetchAPI = async ()=>{
-            setFetchedCountries(await fetchCountriesList())
-        }
-        fetchAPI()
-    },[setFetchedCountries]);
+
+    useEffect(()=>{
+        setFetchedCountries(()=>{
+            return countriesInfo.map(country => country.country)
+        })
+    },[countriesInfo])
 
 
     return (

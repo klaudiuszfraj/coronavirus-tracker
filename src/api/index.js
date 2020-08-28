@@ -13,7 +13,7 @@ export const fetchData = async (country= "global")=>{
 
     try {
         const {data} = await axios.get(`${changeApiUrl}`);
-        console.log('data from fetchData',data);
+        console.log('fetchData',data);
         return data;
     } catch (error){
         console.log(error);
@@ -36,11 +36,11 @@ export const fetchDailyDate = async ()=>{
     }
 }
 
-export const fetchCountriesList = async ()=>{
+export const fetchCountriesInfo = async ()=>{
     try {
         const {data} = await axios.get(`${API_URL}/countries`);
-        console.log('data from disease',data);
-        return data.map(countries=>countries.country);
+        console.log('fetchCountriesInfo',data);
+        return data;
     } catch (error){
         console.log(error);
     }

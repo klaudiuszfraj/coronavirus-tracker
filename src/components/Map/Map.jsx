@@ -5,7 +5,10 @@ import style from './Map.module.scss'
 
 
 //todo:: change country names
-function Map({center, zoom}) {
+function Map({center, zoom, countries}) {
+
+
+
  return (
   <div className={style.map}>
    <LeafletMap center={center} zoom={zoom}>

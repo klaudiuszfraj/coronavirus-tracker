@@ -62,7 +62,6 @@ const chartDate = (data, caseType = 'cases') => {
     return dataChart;
 }
 
-
 function LineGraph({caseType}) {
     const [data, setData] = useState({});
 

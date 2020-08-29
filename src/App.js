@@ -6,6 +6,8 @@ import coronaImage from './images/image.png'
 import { fetchData, fetchCountriesInfo } from "./api";
 import TableCountries from "./components/TableCountries/TableCountries";
 import LineGraph from "./components/LineGraph/LineGraph";
+import Map from "./components/Map/Map";
+//todo:: import form components
 
 class App extends Component {
     state = {
@@ -50,7 +52,7 @@ class App extends Component {
                 <LineGraph/>
                 {/*Cart with case*/}
                 <Chart data={data} country={country}/>
-
+                <Map/>
             </div>
         );
     }

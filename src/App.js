@@ -61,7 +61,7 @@ class App extends Component {
                 <LineGraph/>
                 {/*Cart with case*/}
                 <Chart data={data} country={country}/>
-                <Map center={this.state.mapCenter} zoom={this.state.mapZoom}/>
+                <Map center={this.state.mapCenter} zoom={this.state.mapZoom} countriesInfo={this.state.countriesInfo}/>
             </div>
         );
     }

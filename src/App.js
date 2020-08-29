@@ -13,7 +13,9 @@ class App extends Component {
     state = {
         data: {},
         country: '',
-        countriesInfo: []
+        countriesInfo: [],
+        mapCenter: {lat: 34.80746, lng: -40.4796},
+        mapZoom: 3
     }
 
     async componentDidMount() {
@@ -52,7 +54,7 @@ class App extends Component {
                 <LineGraph/>
                 {/*Cart with case*/}
                 <Chart data={data} country={country}/>
-                <Map/>
+                <Map center={this.state.mapCenter} zoom={this.state.mapZoom}/>
             </div>
         );
     }

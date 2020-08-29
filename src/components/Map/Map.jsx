@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map as LeafletMap, TileLayer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
-import style from './Map.modules.scss'
+import style from './Map.module.scss'
 
 function Map({center, zoom}) {
  return (

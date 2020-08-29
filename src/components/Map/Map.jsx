@@ -3,6 +3,8 @@ import { Map as LeafletMap, TileLayer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
 import style from './Map.module.scss'
 
+
+//todo:: change country names
 function Map({center, zoom}) {
  return (
   <div className={style.map}>

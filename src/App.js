@@ -28,7 +28,14 @@ class App extends Component {
 
     handleCountryChange = async (country)=>{
         const fetchedCountryData = await fetchData(country);
-        this.setState({ data: fetchedCountryData, country: country})
+        this.setState({
+            data: fetchedCountryData,
+            country: country,
+            mapCenter: {
+                lat: fetchedCountryData.countryInfo.lat,
+                lng: fetchedCountryData.countryInfo.long
+            }
+        })
     }
 
 

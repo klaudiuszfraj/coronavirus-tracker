@@ -15,7 +15,8 @@ class App extends Component {
         country: '',
         countriesInfo: [],
         mapCenter: {lat: 34.80746, lng: -40.4796},
-        mapZoom: 3
+        mapZoom: 3,
+        caseType: 'cases'
     }
 
     async componentDidMount() {
@@ -38,7 +39,11 @@ class App extends Component {
         })
     }
 
-
+    handleCaseChange = (caseType)=> {
+        this.setState({caseType: caseType})
+    }
+    //todo:: setstate in props?
+    //todo:: deconstruct the state
     render() {
         const { data, country } =this.state;
         return (
@@ -47,7 +52,7 @@ class App extends Component {
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
 
                 {/*Cards*/}
-                <Cards data={data}/>
+                <Cards data={data} onCaseType={this.handleCaseChange}/>
 
                 {/*Dropdown*/}
                 <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={this.state.countriesInfo}/>
@@ -61,7 +66,7 @@ class App extends Component {
                 <LineGraph/>
                 {/*Cart with case*/}
                 <Chart data={data} country={country}/>
-                <Map center={this.state.mapCenter} zoom={this.state.mapZoom} countriesInfo={this.state.countriesInfo}/>
+                <Map center={this.state.mapCenter} zoom={this.state.mapZoom} countriesInfo={this.state.countriesInfo} caseType={this.state.caseType}/>
             </div>
         );
     }

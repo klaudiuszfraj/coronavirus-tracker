@@ -6,7 +6,7 @@ import cx from 'classnames';
 import style from './Cards.module.scss'
 
 
-function Cards({data: {cases, recovered, deaths, updated}}) {
+function Cards({data: {cases, recovered, deaths, updated}, onCaseType}) {
     if (!cases) {
         return 'Loading...';
     }
@@ -15,26 +15,35 @@ function Cards({data: {cases, recovered, deaths, updated}}) {
             class: style.infected,
             label: 'Infected',
             value: cases,
-            text: 'Number of active cases of COVID-19'
+            text: 'Number of active cases of COVID-19',
+            caseType: 'cases'
         },
         {
             class: style.recovered,
             label: 'Recovered',
             value: recovered,
-            text: 'Number of recoveries from COVID-19'
+            text: 'Number of recoveries from COVID-19',
+            caseType: 'recovered'
         },
         {
             class: style.deaths,
             label: 'Deaths',
             value: deaths,
-            text: 'Number of deaths caused by COVID-19'
+            text: 'Number of deaths caused by COVID-19',
+            caseType: 'deaths'
         }
     ]
     return (
         <div className={style.container}>
             <Grid container spacing={3} justify='center'>
                 {cards.map(card => (
-                    <Grid key={card.label} item component={Card} xs={12} md={3} className={cx(style.card, card.class)}>
+                    <Grid key={card.label}
+                          item
+                          component={Card}
+                          xs={12} md={3}
+                          className={cx(style.card, card.class)}
+                          onClick={() => onCaseType(card.caseType)}
+                    >
                         <CardContent>
                             <Typography color='textSecondary' gutterBottom>{card.label}</Typography>
                             <Typography variant='h5'>

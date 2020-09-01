@@ -22,7 +22,7 @@ const casesTypeColors = {
 }
 
 //todo:: change country names
-function Map({center, zoom, countriesInfo}) {
+function Map({center, zoom, countriesInfo, caseType}) {
 
     const showDataOnMap = (data, caseType='cases')=> (
         data.map(country => (
@@ -59,7 +59,7 @@ function Map({center, zoom, countriesInfo}) {
      url={'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
      attribution={'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}
     />
-    {showDataOnMap(countriesInfo)}
+    {showDataOnMap(countriesInfo, caseType)}
 
    </LeafletMap>
   </div>

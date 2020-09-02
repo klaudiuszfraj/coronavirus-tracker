@@ -47,7 +47,7 @@ class App extends Component {
     render() {
         const { data, country } =this.state;
         return (
-            <div className={style.container}>
+            <div className={style.app__container}>
                 {/*Header*/}
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
 

@@ -1,6 +1,13 @@
 .table{
   margin-top: 20px;
   height: 400px;
-  overflow: scroll;
+  overflow: auto !important;
+  padding: 1rem;
+  tr:nth-child(2n){
+    background-color: #dcdcdc;
+  }
+  td:nth-child(2){
+    font-weight: bold;
+  }
 }
-//todo:: enable scroll, style odd rows, data bold, wrap with a div?
+//todo:: style odd rows 100% width, data bold, wrap with a div?

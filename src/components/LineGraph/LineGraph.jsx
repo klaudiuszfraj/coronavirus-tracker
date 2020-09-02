@@ -91,7 +91,7 @@ function LineGraph({caseType}) {
     }
     //todo:: change component name? extract fetch to API, change graf colorm data? mew synax
     return (
-        <div>
+        <div className={'container'}>
             {data?.length > 0 && (
                 <Line data={{
                     datasets: [{

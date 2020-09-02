@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchDailyDate} from "../../api";
 import { Line, Bar } from "react-chartjs-2";
 import style from './Chart.module.scss';
+import cx from 'classnames';
 
 function Chart({ data: { confirmed, deaths, recovered }, country}) {
     const [dailyData, setDailyData] = useState([]);
@@ -61,7 +62,7 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
     );
 
  return (
-  <div className={style.container}>
+  <div className={cx(style.chart, 'container')}>
       {country ? barChart : lineChart}
   </div>
  );

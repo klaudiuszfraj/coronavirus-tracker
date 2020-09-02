@@ -34,7 +34,7 @@ function Cards({data: {cases, recovered, deaths, updated}, onCaseType}) {
         }
     ]
     return (
-        <div className={style.container}>
+        <div className={'container'}>
             <Grid container spacing={3} justify='center'>
                 {cards.map(card => (
                     <Grid key={card.label}

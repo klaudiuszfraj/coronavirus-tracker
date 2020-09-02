@@ -1,8 +1,9 @@
 import React from 'react';
 import {Circle, Map as LeafletMap, Popup, TileLayer} from "react-leaflet";
-import 'leaflet/dist/leaflet.css'
-import style from './Map.module.scss'
-import numeral from 'numeral'
+import 'leaflet/dist/leaflet.css';
+import style from './Map.module.scss';
+import numeral from 'numeral';
+import cx from 'classnames';
 
 //todo:: repeated part
 const casesTypeColors = {
@@ -55,7 +56,7 @@ function Map({center, zoom, countriesInfo, caseType}) {
 
 
  return (
-  <div className={style.map}>
+  <div className={cx(style.map, 'container')}>
    <LeafletMap center={center} zoom={zoom}>
     <TileLayer
      url={'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}

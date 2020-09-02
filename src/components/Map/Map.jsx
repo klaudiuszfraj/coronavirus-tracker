@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import style from './Map.module.scss'
 import numeral from 'numeral'
 
+//todo:: repeated part
 const casesTypeColors = {
     cases: {
         hex: 'rgba(0, 0, 255, 0.5)',

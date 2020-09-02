@@ -28,6 +28,7 @@ function Map({center, zoom, countriesInfo, caseType}) {
     const showDataOnMap = (data, caseType='cases')=> (
         data.map(country => (
             <Circle
+                key={country.country}
                 center={[country.countryInfo.lat, country.countryInfo.long]}
                 fillOpacity={0.4}
                 color={casesTypeColors[caseType].hex}

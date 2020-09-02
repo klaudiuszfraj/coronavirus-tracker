@@ -19,7 +19,7 @@ function TableCountries({countriesInfo}) {
             <h2>Live Cases by Country</h2>
             <Table>
                 {sortedCountries.map(countryInfo => (
-                    <tr>
+                    <tr key={countryInfo.country}>
                         <td>{countryInfo.country}</td>
                         <td>{countryInfo.cases}</td>
                     </tr>

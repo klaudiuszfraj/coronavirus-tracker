@@ -23,7 +23,7 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
                     labels: dailyData.map(({date}) => date),
                     datasets: [{
                         data: dailyData.map(({ confirmed }) => confirmed),
-                        label: 'Infected',
+                        label: 'Cases',
                         borderColor: '#33f',
                         fill: true
                     },{

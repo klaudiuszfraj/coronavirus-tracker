@@ -45,3 +45,14 @@ export const fetchCountriesInfo = async ()=>{
         console.log(error);
     }
 }
+
+export const fetchHistoricalAll = async ()=>{
+    try {
+        const {data} = await axios.get(`${API_URL}/historical/all?lastdays=all`);
+        console.log('fetchHistoricalAll',data);
+        return data;
+    }
+    catch (error){
+        console.log(error);
+    }
+}

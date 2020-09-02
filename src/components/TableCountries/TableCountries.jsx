@@ -18,12 +18,14 @@ function TableCountries({countriesInfo}) {
         <Card className={style.table}>
             <h2>Live Cases by Country</h2>
             <Table>
+                <tbody>
                 {sortedCountries.map(countryInfo => (
                     <tr key={countryInfo.country}>
                         <td>{countryInfo.country}</td>
                         <td>{countryInfo.cases}</td>
                     </tr>
                 ))}
+                </tbody>
             </Table>
         </Card>
     );

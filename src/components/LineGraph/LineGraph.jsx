@@ -46,7 +46,7 @@ const options = {
     },
 };
 
-const chartDate = (data, caseType = 'cases') => {
+const chartDate = (data, caseType = 'deaths') => {
     const dataChart = [];
     let lastDataPoint;
     for (let date in data.cases) {
@@ -71,14 +71,24 @@ function LineGraph({caseType}) {
                 .then(response => response.json())
                 .then(data => {
                     console.log('line', data);
-                    let chartData = chartDate(data)
+                    let chartData = chartDate(data, caseType)
                     setData(chartData);
                 });
         };
         fetchData()
     }, [caseType]);
 
-
+    const casesTypeColors = {
+        cases: {
+            hex: 'rgba(0, 0, 255, 0.5)',
+        },
+        recovered: {
+            hex: 'rgba(0, 255, 0, 0.5)',
+        },
+        deaths: {
+            hex: 'rgba(255, 0, 0, 0.5)',
+        }
+    }
     //todo:: change component name? extract fetch to API, change graf colorm data? mew synax
     return (
         <div>
@@ -86,7 +96,7 @@ function LineGraph({caseType}) {
                 <Line data={{
                     datasets: [{
                         data: data,
-                        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        backgroundColor: casesTypeColors[caseType].hex,
                         color: 'CC1034',
                     }]
                 }}

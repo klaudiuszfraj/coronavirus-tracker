@@ -63,7 +63,7 @@ class App extends Component {
 
                 {/*Table cases by country*/}
                 <TableCountries countriesInfo={this.state.countriesInfo}/>
-                <LineGraph/>
+                <LineGraph caseType={this.state.caseType}/>
                 {/*Cart with case*/}
                 <Chart data={data} country={country}/>
                 <Map center={this.state.mapCenter} zoom={this.state.mapZoom} countriesInfo={this.state.countriesInfo} caseType={this.state.caseType}/>

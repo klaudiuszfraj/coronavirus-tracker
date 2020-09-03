@@ -4,6 +4,11 @@ import numeral from 'numeral';
 import {fetchHistoricalAll} from "../../api";
 
 const options = {
+
+    title:{
+        display: true,
+            text: `All cases`
+    },
     legend: {
         display: false
     },

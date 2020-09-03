@@ -1,8 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {Line} from "react-chartjs-2";
 import numeral from 'numeral';
+import {fetchHistoricalAll} from "../../api";
+import cx from 'classnames';
+import style from './LineGraph.module.scss';
 
 const options = {
+
+    title:{
+        display: true,
+            text: `All cases`
+    },
     legend: {
         display: false
     },
@@ -67,26 +75,32 @@ function LineGraph({caseType}) {
 
     useEffect(() => {
         const fetchData = async () => {
-            await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
-                .then(response => response.json())
-                .then(data => {
-                    console.log('line', data);
-                    let chartData = chartDate(data)
-                    setData(chartData);
-                });
+            const fetchHistoricalData = await fetchHistoricalAll();
+            let chartData = chartDate(fetchHistoricalData, caseType);
+            setData(chartData);
         };
         fetchData()
-    }, [caseType]);
+    }, []);
 
-
-    //todo:: change component name? extract fetch to API, change graf colorm data? mew synax
+    const casesTypeColors = {
+        cases: {
+            hex: 'rgba(0, 0, 255, 0.5)',
+        },
+        recovered: {
+            hex: 'rgba(0, 255, 0, 0.5)',
+        },
+        deaths: {
+            hex: 'rgba(255, 0, 0, 0.5)',
+        }
+    }
+    //todo:: change component name?, change graf colorm data? mew synax
     return (
-        <div>
+        <div className={cx(style.lineGraph, 'container')}>
             {data?.length > 0 && (
                 <Line data={{
                     datasets: [{
                         data: data,
-                        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        backgroundColor: casesTypeColors[caseType].hex,
                         color: 'CC1034',
                     }]
                 }}

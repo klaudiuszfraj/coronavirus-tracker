@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { fetchDailyDate} from "../../api";
 import { Line, Bar } from "react-chartjs-2";
 import style from './Chart.module.scss';
+import cx from 'classnames';
+import numeral from "numeral";
 
-function Chart({ data: { confirmed, deaths, recovered }, country}) {
+function Chart({ data: { cases, deaths, recovered }, country}) {
     const [dailyData, setDailyData] = useState([]);
 
     useEffect(()=>{
         const fetchAPI = async ()=>{
-            const dailyDeta = await fetchDailyDate();
-            setDailyData(dailyDeta);
+            const dailyData = await fetchDailyDate();
+            setDailyData(dailyData);
         }
         fetchAPI();
     },[])
@@ -22,7 +24,7 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
                     labels: dailyData.map(({date}) => date),
                     datasets: [{
                         data: dailyData.map(({ confirmed }) => confirmed),
-                        label: 'Infected',
+                        label: 'Cases',
                         borderColor: '#33f',
                         fill: true
                     },{
@@ -32,11 +34,40 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
                         fill: true
                     }]
                 }}
+                options={{
+                    maintainAspectRatio: false,
+                    title:{
+                        display: true,
+                        text: 'All data per day'
+                    },
+                    scales: {
+                        // xAxes: [
+                        //     {
+                        //         type: 'time',
+                        //         time: {
+                        //             format: 'MM/DD/YY',
+                        //         },
+                        //     },
+                        // ],
+                        yAxes: [
+                            {
+                                gridLines: {
+                                    display: false,
+                                },
+                                ticks: {
+                                    callback: function (value, index, values) {
+                                        return numeral(value).format('0a');
+                                    },
+                                },
+                            },
+                        ],
+                    }
+                }}
             />)
         : null
     );
     const barChart = (
-        confirmed
+        cases
         ? (
             <Bar
                 data={{
@@ -48,7 +79,7 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
                             'rgba(0, 255, 0, 0.5)',
                             'rgba(255, 0, 0, 0.5)'
                         ],
-                        data: [confirmed.value, recovered.value, deaths.value]
+                        data: [cases, recovered, deaths]
                     }]
                 }}
                 options={{
@@ -61,7 +92,7 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
     );
 
  return (
-  <div className={style.container}>
+  <div className={cx(style.chart, 'container')}>
       {country ? barChart : lineChart}
   </div>
  );

@@ -1,9 +1,11 @@
 import React from 'react';
 import {Circle, Map as LeafletMap, Popup, TileLayer} from "react-leaflet";
-import 'leaflet/dist/leaflet.css'
-import style from './Map.module.scss'
-import numeral from 'numeral'
+import 'leaflet/dist/leaflet.css';
+import style from './Map.module.scss';
+import numeral from 'numeral';
+import cx from 'classnames';
 
+//todo:: repeated part
 const casesTypeColors = {
     cases: {
         hex: 'rgba(0, 0, 255, 0.5)',
@@ -22,11 +24,12 @@ const casesTypeColors = {
 }
 
 //todo:: change country names
-function Map({center, zoom, countriesInfo}) {
+function Map({center, zoom, countriesInfo, caseType}) {
 
     const showDataOnMap = (data, caseType='cases')=> (
         data.map(country => (
             <Circle
+                key={country.country}
                 center={[country.countryInfo.lat, country.countryInfo.long]}
                 fillOpacity={0.4}
                 color={casesTypeColors[caseType].hex}
@@ -53,13 +56,13 @@ function Map({center, zoom, countriesInfo}) {
 
 
  return (
-  <div className={style.map}>
+  <div className={cx(style.map, 'container')}>
    <LeafletMap center={center} zoom={zoom}>
     <TileLayer
      url={'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
      attribution={'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}
     />
-    {showDataOnMap(countriesInfo)}
+    {showDataOnMap(countriesInfo, caseType)}
 
    </LeafletMap>
   </div>

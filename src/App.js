@@ -14,8 +14,9 @@ class App extends Component {
         data: {},
         country: '',
         countriesInfo: [],
-        mapCenter: {lat: 34.80746, lng: -40.4796},
-        mapZoom: 3
+        mapCenter: {lat: 52, lng: 20},
+        mapZoom: 3,
+        caseType: 'cases'
     }
 
     async componentDidMount() {
@@ -32,36 +33,35 @@ class App extends Component {
             data: fetchedCountryData,
             country: country,
             mapCenter: {
-                lat: fetchedCountryData.countryInfo.lat,
-                lng: fetchedCountryData.countryInfo.long
+                lat: country==='global' ? 52 : fetchedCountryData.countryInfo.lat,
+                lng: country==='global' ? 20 : fetchedCountryData.countryInfo.long
             }
         })
     }
 
-
+    handleCaseChange = (caseType)=> {
+        this.setState({caseType: caseType})
+    }
+    //todo:: setstate in props?
     render() {
-        const { data, country } =this.state;
+        const { data, country, caseType, countriesInfo, mapCenter, mapZoom } =this.state;
         return (
-            <div className={style.container}>
-                {/*Header*/}
+            <div className={style.app__container}>
+                <div className={style.app__main}>
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
+                <Cards data={data} onCaseType={this.handleCaseChange}/>
+                <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={countriesInfo}/>
+                <Map center={mapCenter} zoom={mapZoom} countriesInfo={countriesInfo} caseType={caseType}/>
+                </div>
 
-                {/*Cards*/}
-                <Cards data={data}/>
-
-                {/*Dropdown*/}
-                <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={this.state.countriesInfo}/>
-
-                {/*Map*/}
-
+                <div className={style.app__secondary}>
                 {/*Table global deaths/recovers in country*/}
-
                 {/*Table cases by country*/}
-                <TableCountries countriesInfo={this.state.countriesInfo}/>
-                <LineGraph/>
+                <TableCountries countriesInfo={countriesInfo}/>
+                <LineGraph caseType={caseType}/>
                 {/*Cart with case*/}
                 <Chart data={data} country={country}/>
-                <Map center={this.state.mapCenter} zoom={this.state.mapZoom} countriesInfo={this.state.countriesInfo}/>
+                </div>
             </div>
         );
     }

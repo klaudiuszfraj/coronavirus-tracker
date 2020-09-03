@@ -5,13 +5,13 @@ import style from './Chart.module.scss';
 import cx from 'classnames';
 import numeral from "numeral";
 
-function Chart({ data: { confirmed, deaths, recovered }, country}) {
+function Chart({ data: { cases, deaths, recovered }, country}) {
     const [dailyData, setDailyData] = useState([]);
 
     useEffect(()=>{
         const fetchAPI = async ()=>{
-            const dailyDeta = await fetchDailyDate();
-            setDailyData(dailyDeta);
+            const dailyData = await fetchDailyDate();
+            setDailyData(dailyData);
         }
         fetchAPI();
     },[])
@@ -67,7 +67,7 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
         : null
     );
     const barChart = (
-        confirmed
+        cases
         ? (
             <Bar
                 data={{
@@ -79,7 +79,7 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
                             'rgba(0, 255, 0, 0.5)',
                             'rgba(255, 0, 0, 0.5)'
                         ],
-                        data: [confirmed.value, recovered.value, deaths.value]
+                        data: [cases, recovered, deaths]
                     }]
                 }}
                 options={{

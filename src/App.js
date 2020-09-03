@@ -48,17 +48,21 @@ class App extends Component {
         const { data, country } =this.state;
         return (
             <div className={style.app__container}>
+                <div className={style.app__main}>
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
                 <Cards data={data} onCaseType={this.handleCaseChange}/>
                 <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={this.state.countriesInfo}/>
-                
                 <Map center={this.state.mapCenter} zoom={this.state.mapZoom} countriesInfo={this.state.countriesInfo} caseType={this.state.caseType}/>
+                </div>
+
+                <div className={style.app__secondary}>
                 {/*Table global deaths/recovers in country*/}
                 {/*Table cases by country*/}
                 <TableCountries countriesInfo={this.state.countriesInfo}/>
                 <LineGraph caseType={this.state.caseType}/>
                 {/*Cart with case*/}
                 <Chart data={data} country={country}/>
+                </div>
             </div>
         );
     }

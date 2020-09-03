@@ -40,7 +40,7 @@ function Cards({data: {cases, recovered, deaths, updated}, onCaseType}) {
                     <Grid key={card.label}
                           item
                           component={Card}
-                          xs={12} md={3}
+                          xs={12} sm={3}
                           className={cx(style.card, card.class)}
                           onClick={() => onCaseType(card.caseType)}
                     >

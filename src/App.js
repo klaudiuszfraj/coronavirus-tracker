@@ -33,8 +33,8 @@ class App extends Component {
             data: fetchedCountryData,
             country: country,
             mapCenter: {
-                lat: fetchedCountryData.countryInfo.lat,
-                lng: fetchedCountryData.countryInfo.long
+                lat: country==='global' ? 52 : fetchedCountryData.countryInfo.lat,
+                lng: country==='global' ? 20 : fetchedCountryData.countryInfo.long
             }
         })
     }

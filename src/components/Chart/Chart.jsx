@@ -33,6 +33,12 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
                         fill: true
                     }]
                 }}
+                options={{
+                    title:{
+                        display: true,
+                        text: 'All cases'
+                    }
+                }}
             />)
         : null
     );

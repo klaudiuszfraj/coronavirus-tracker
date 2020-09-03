@@ -1,4 +1,7 @@
 .formControl {
     width: 80%;
     margin-bottom: 30px !important;
+    @media screen and (min-width: 500px){
+        width: 300px;
+    }
 }

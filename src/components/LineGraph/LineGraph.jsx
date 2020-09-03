@@ -80,7 +80,7 @@ function LineGraph({caseType}) {
             setData(chartData);
         };
         fetchData()
-    }, []);
+    }, [caseType]);
 
     const casesTypeColors = {
         cases: {

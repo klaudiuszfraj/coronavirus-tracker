@@ -3,6 +3,7 @@ import { fetchDailyDate} from "../../api";
 import { Line, Bar } from "react-chartjs-2";
 import style from './Chart.module.scss';
 import cx from 'classnames';
+import numeral from "numeral";
 
 function Chart({ data: { confirmed, deaths, recovered }, country}) {
     const [dailyData, setDailyData] = useState([]);
@@ -34,9 +35,32 @@ function Chart({ data: { confirmed, deaths, recovered }, country}) {
                     }]
                 }}
                 options={{
+                    maintainAspectRatio: false,
                     title:{
                         display: true,
-                        text: 'All cases'
+                        text: 'All data per day'
+                    },
+                    scales: {
+                        // xAxes: [
+                        //     {
+                        //         type: 'time',
+                        //         time: {
+                        //             format: 'MM/DD/YY',
+                        //         },
+                        //     },
+                        // ],
+                        yAxes: [
+                            {
+                                gridLines: {
+                                    display: false,
+                                },
+                                ticks: {
+                                    callback: function (value, index, values) {
+                                        return numeral(value).format('0a');
+                                    },
+                                },
+                            },
+                        ],
                     }
                 }}
             />)

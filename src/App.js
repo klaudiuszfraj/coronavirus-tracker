@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 
-import { Cards, Chart, CountryPicker } from "./components";
+import { Cards, Chart, CountryPicker, TableCountries, LineGraph, Map } from "./components";
 import style from './App.module.scss';
 import coronaImage from './images/image.png'
 import { fetchData, fetchCountriesInfo } from "./api";
-import TableCountries from "./components/TableCountries/TableCountries";
-import LineGraph from "./components/LineGraph/LineGraph";
-import Map from "./components/Map/Map";
-//todo:: import form components
 
 class App extends Component {
     state = {

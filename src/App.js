@@ -14,7 +14,7 @@ class App extends Component {
         data: {},
         country: '',
         countriesInfo: [],
-        mapCenter: {lat: 34.80746, lng: -40.4796},
+        mapCenter: {lat: 52, lng: 20},
         mapZoom: 3,
         caseType: 'cases'
     }

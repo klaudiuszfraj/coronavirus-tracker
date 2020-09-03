@@ -48,25 +48,17 @@ class App extends Component {
         const { data, country } =this.state;
         return (
             <div className={style.app__container}>
-                {/*Header*/}
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
-
-                {/*Cards*/}
                 <Cards data={data} onCaseType={this.handleCaseChange}/>
-
-                {/*Dropdown*/}
                 <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={this.state.countriesInfo}/>
-
-                {/*Map*/}
-
+                
+                <Map center={this.state.mapCenter} zoom={this.state.mapZoom} countriesInfo={this.state.countriesInfo} caseType={this.state.caseType}/>
                 {/*Table global deaths/recovers in country*/}
-
                 {/*Table cases by country*/}
                 <TableCountries countriesInfo={this.state.countriesInfo}/>
                 <LineGraph caseType={this.state.caseType}/>
                 {/*Cart with case*/}
                 <Chart data={data} country={country}/>
-                <Map center={this.state.mapCenter} zoom={this.state.mapZoom} countriesInfo={this.state.countriesInfo} caseType={this.state.caseType}/>
             </div>
         );
     }

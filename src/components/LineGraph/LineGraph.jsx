@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Line} from "react-chartjs-2";
 import numeral from 'numeral';
 import {fetchHistoricalAll} from "../../api";
+import cx from 'classnames';
+import style from './LineGraph.module.scss';
 
 const options = {
 
@@ -93,7 +95,7 @@ function LineGraph({caseType}) {
     }
     //todo:: change component name?, change graf colorm data? mew synax
     return (
-        <div className={'container'}>
+        <div className={cx(style.lineGraph, 'container')}>
             {data?.length > 0 && (
                 <Line data={{
                     datasets: [{

@@ -11,7 +11,7 @@ function Chart({ data: { cases, deaths, recovered }, country}) {
     useEffect(()=>{
         const fetchAPI = async ()=>{
             const dailyData = await fetchDailyDate();
-            setDailyData(dailyData);
+            // setDailyData(dailyData);
         }
         fetchAPI();
     },[])

@@ -20,9 +20,9 @@ export const fetchData = async (country= "global")=>{
     }
 };
 export const fetchDailyDate = async ()=>{
-    console.log('fetch data daily api');
     try {
         const { data } = await axios.get(`${API_URL1}/daily`)
+        console.log('fetch data daily api',data);
 
         const mofifiadData = data.map(daileData => ({
             confirmed: daileData.confirmed.total,

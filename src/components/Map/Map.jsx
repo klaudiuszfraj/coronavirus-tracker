@@ -25,7 +25,7 @@ const casesTypeColors = {
 
 //todo:: change country names
 function Map({center, zoom, countriesInfo, caseType}) {
-
+    window.dispatchEvent(new Event('resize'));
     const showDataOnMap = (data, caseType='cases')=> (
         data.map(country => (
             <Circle

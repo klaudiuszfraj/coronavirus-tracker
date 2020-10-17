@@ -20,7 +20,22 @@ class App extends Component {
         this.setState({ data: fetchedData });
 
         const fetchedCountriesInfo = await fetchCountriesInfo();
-        this.setState({ countriesInfo: fetchedCountriesInfo })
+        this.setState({ countriesInfo: fetchedCountriesInfo });
+
+        const interval = ()=> {
+            let index = 0;
+            setInterval(()=>{
+                const cards = ['cases', 'recovered', 'deaths'];
+                this.setState({caseType: cards[index]});
+                index++;
+                if (index ===3){
+                    index=0;
+                }
+            },5000)
+
+        }
+        interval();
+
     }
 
     handleCountryChange = async (country)=>{

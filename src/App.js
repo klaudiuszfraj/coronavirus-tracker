@@ -22,20 +22,18 @@ class App extends Component {
         const fetchedCountriesInfo = await fetchCountriesInfo();
         this.setState({ countriesInfo: fetchedCountriesInfo });
 
-        const interval = ()=> {
-            let index = 0;
-            setInterval(()=>{
-                const cards = ['cases', 'recovered', 'deaths'];
-                this.setState({caseType: cards[index]});
-                index++;
-                if (index ===3){
-                    index=0;
-                }
-            },5000)
-
-        }
-        interval();
-
+        this.interval();
+    }
+    interval = ()=> {
+        let index = 0;
+        window.myInterval = setInterval(()=>{
+            const cards = ['recovered', 'deaths', 'cases'];
+            this.setState({caseType: cards[index]});
+            index++;
+            if (index ===3){
+                index=0;
+            }
+        },5000)
     }
 
     handleCountryChange = async (country)=>{
@@ -52,6 +50,8 @@ class App extends Component {
 
     handleCaseChange = (caseType)=> {
         this.setState({caseType: caseType})
+        clearInterval(window.myInterval)
+        // clearInterval(this.interval)
     }
     //todo:: setstate in props?
     render() {
@@ -60,7 +60,7 @@ class App extends Component {
             <div className={style.app__container}>
                 <div className={style.app__main}>
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
-                <Cards data={data} onCaseType={this.handleCaseChange}/>
+                <Cards data={data} onCaseType={this.handleCaseChange} interval={this.interval}/>
                 <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={countriesInfo}/>
                 <Map center={mapCenter} zoom={mapZoom} countriesInfo={countriesInfo} caseType={caseType}/>
                 </div>

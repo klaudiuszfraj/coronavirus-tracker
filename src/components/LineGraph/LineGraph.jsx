@@ -24,7 +24,7 @@ const chartDate = (data, caseType = 'cases') => {
 function LineGraph({caseType}) {
     const [data, setData] = useState({});
     const [historicalData, setHistoricalData] = useState({});
-
+    //todo:: extrat fetch to app
     useEffect(() => {
         const fetchData = async () => {
             const fetchHistoricalData = await fetchHistoricalAll();

@@ -12,7 +12,6 @@ function TableCountries({countriesInfo}) {
     }
 
     const sortedCountries = sort(countriesInfo);
-    console.log(sortedCountries);
 
     return (
         <Card className={cx(style.table, 'container')}>

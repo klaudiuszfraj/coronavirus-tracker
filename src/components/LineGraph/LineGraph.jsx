@@ -23,15 +23,19 @@ const chartDate = (data, caseType = 'cases') => {
 
 function LineGraph({caseType}) {
     const [data, setData] = useState({});
-
+    const [historicalData, setHistoricalData] = useState({});
+    //todo:: extrat fetch to app
     useEffect(() => {
         const fetchData = async () => {
             const fetchHistoricalData = await fetchHistoricalAll();
-            let chartData = chartDate(fetchHistoricalData, caseType);
-            setData(chartData);
+            setHistoricalData(fetchHistoricalData);
         };
         fetchData()
-    }, [caseType]);
+    }, []);
+    useEffect(()=>{
+        let chartData = chartDate(historicalData, caseType);
+        setData(chartData);
+    },[historicalData, caseType])
 
     const casesTypeColors = {
         cases: {

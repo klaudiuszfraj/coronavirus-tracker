@@ -19,7 +19,8 @@ const chartDate = (data, caseType = 'cases') => {
         }
         lastDataPoint = data[caseType][date];
     }
-    return dataChart.slice(0, 400);;
+    return dataChart.slice(0, 400);
+    ;
 }
 
 function LineGraph({caseType}) {
@@ -51,21 +52,30 @@ function LineGraph({caseType}) {
     }
 
     const options = {
+        plugins: {
+            title: {
+                display: true,
+                text: `Worldwide ${caseType}`
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        return numeral(tooltipItem.value).format('+0,0');
+                    },
+                },
+            },
+        },
         elements: {
             point: {
                 radius: 0,
             },
         },
         maintainAspectRatio: false,
-        tooltips: {
-            mode: 'index',
-            intersect: false,
-            callbacks: {
-                label: function (tooltipItem, data) {
-                    return numeral(tooltipItem.value).format('+0,0');
-                },
-            },
-        },
     };
 
     //todo:: change component name?, change graf colorm data? mew synax
@@ -80,7 +90,7 @@ function LineGraph({caseType}) {
                         label: caseType
                     }]
                 }}
-                      options={options}
+                     options={options}
                 />
             )}
 

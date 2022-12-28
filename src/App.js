@@ -60,18 +60,18 @@ class App extends Component {
             <div className={style.app__container}>
                 <div className={style.app__main}>
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
-                <Cards data={data} onCaseType={this.handleCaseChange} interval={this.interval}/>
-                <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={countriesInfo}/>
-                <Map center={mapCenter} zoom={mapZoom} countriesInfo={countriesInfo} caseType={caseType}/>
+                    <Cards data={data} onCaseType={this.handleCaseChange} interval={this.interval}/>
+                    <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={countriesInfo}/>
+                    {/*<Map center={mapCenter} zoom={mapZoom} countriesInfo={countriesInfo} caseType={caseType}/>*/}
                 </div>
 
                 <div className={style.app__secondary}>
-                {/*Table global deaths/recovers in country*/}
-                {/*Table cases by country*/}
-                <TableCountries countriesInfo={countriesInfo}/>
-                <LineGraph caseType={caseType}/>
-                {/*Cart with case*/}
-                <Chart data={data} country={country}/>
+                    Table global deaths/recovers in country
+                    Table cases by country
+                    <TableCountries countriesInfo={countriesInfo}/>
+                    {/*<LineGraph caseType={caseType}/>*/}
+                    Cart with case
+                    {/*<Chart data={data} country={country}/>*/}
                 </div>
             </div>
         );

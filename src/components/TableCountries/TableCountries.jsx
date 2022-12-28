@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Table} from "@material-ui/core";
+import {Card, Table} from "@mui/material";
 import style from './TableCountries.module.scss';
 import cx from 'classnames';
 

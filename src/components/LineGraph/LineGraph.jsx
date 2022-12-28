@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Line} from "react-chartjs-2";
+import {Bar} from 'react-chartjs-2';
+import {Chart as CartJS} from 'chart.js/auto'
 import numeral from 'numeral';
 import {fetchHistoricalAll} from "../../api";
 import cx from 'classnames';
@@ -12,13 +13,13 @@ const chartDate = (data, caseType = 'cases') => {
         if (lastDataPoint) {
             let newDataPoint = {
                 x: date,
-                y: data[caseType][date] - lastDataPoint
+                y: Math.abs(data[caseType][date] - lastDataPoint),
             };
             dataChart.push(newDataPoint)
         }
         lastDataPoint = data[caseType][date];
     }
-    return dataChart;
+    return dataChart.slice(0, 400);;
 }
 
 function LineGraph({caseType}) {
@@ -32,10 +33,10 @@ function LineGraph({caseType}) {
         };
         fetchData()
     }, []);
-    useEffect(()=>{
+    useEffect(() => {
         let chartData = chartDate(historicalData, caseType);
         setData(chartData);
-    },[historicalData, caseType])
+    }, [historicalData, caseType])
 
     const casesTypeColors = {
         cases: {
@@ -50,13 +51,6 @@ function LineGraph({caseType}) {
     }
 
     const options = {
-        title:{
-            display: true,
-            text: `Worldwide ${caseType}`
-        },
-        legend: {
-            display: false
-        },
         elements: {
             point: {
                 radius: 0,
@@ -72,40 +66,18 @@ function LineGraph({caseType}) {
                 },
             },
         },
-        scales: {
-            xAxes: [
-                {
-                    type: 'time',
-                    time: {
-                        format: 'MM/DD/YY',
-                        tooltipFormat: 'll',
-                    },
-                },
-            ],
-            yAxes: [
-                {
-                    gridLines: {
-                        display: false,
-                    },
-                    ticks: {
-                        callback: function (value, index, values) {
-                            return numeral(value).format('0a');
-                        },
-                    },
-                },
-            ],
-        },
     };
 
     //todo:: change component name?, change graf colorm data? mew synax
     return (
         <div className={cx(style.lineGraph, 'container')}>
             {data?.length > 0 && (
-                <Line data={{
+                <Bar data={{
                     datasets: [{
                         data: data,
                         backgroundColor: casesTypeColors[caseType].hex,
                         color: 'CC1034',
+                        label: caseType
                     }]
                 }}
                       options={options}

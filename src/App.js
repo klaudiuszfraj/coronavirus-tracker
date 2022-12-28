@@ -69,7 +69,7 @@ class App extends Component {
                     Table global deaths/recovers in country
                     Table cases by country
                     <TableCountries countriesInfo={countriesInfo}/>
-                    {/*<LineGraph caseType={caseType}/>*/}
+                    <LineGraph caseType={caseType}/>
                     Cart with case
                     {/*<Chart data={data} country={country}/>*/}
                 </div>

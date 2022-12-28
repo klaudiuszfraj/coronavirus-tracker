@@ -62,7 +62,7 @@ class App extends Component {
                 <img className={style.image} src={coronaImage} alt='COVID-19'/>
                     <Cards data={data} onCaseType={this.handleCaseChange} interval={this.interval}/>
                     <CountryPicker changeCountry={this.handleCountryChange} countriesInfo={countriesInfo}/>
-                    {/*<Map center={mapCenter} zoom={mapZoom} countriesInfo={countriesInfo} caseType={caseType}/>*/}
+                    <Map center={mapCenter} zoom={mapZoom} countriesInfo={countriesInfo} caseType={caseType}/>
                 </div>
 
                 <div className={style.app__secondary}>

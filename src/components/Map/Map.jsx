@@ -1,5 +1,5 @@
 import React from 'react';
-import {Circle, Map as LeafletMap, Popup, TileLayer} from "react-leaflet";
+import {MapContainer, TileLayer, Circle, Popup} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import style from './Map.module.scss';
 import numeral from 'numeral';
@@ -9,15 +9,15 @@ import cx from 'classnames';
 const casesTypeColors = {
     cases: {
         hex: 'rgba(0, 0, 255, 0.5)',
-        multiplier: 800
+        multiplier: 40
     },
     recovered: {
         hex: 'rgba(0, 255, 0, 0.5)',
-        multiplier: 1200
+        multiplier: 40
     },
     deaths: {
         hex: 'rgba(255, 0, 0, 0.5)',
-        multiplier: 2000
+        multiplier: 50
     }
 
 
@@ -32,17 +32,18 @@ function Map({center, zoom, countriesInfo, caseType}) {
                 key={country.country}
                 center={[country.countryInfo.lat, country.countryInfo.long]}
                 fillOpacity={0.4}
-                color={casesTypeColors[caseType].hex}
-                fillColor={casesTypeColors[caseType].hex}
                 radius={
                     Math.sqrt(country[caseType]) * casesTypeColors[caseType].multiplier
                 }
-                
+                pathOptions={
+                    {
+                        color: casesTypeColors[caseType].hex,
+                        fillColor: casesTypeColors[caseType].hex
+                    }}
             >
-                {/*todo:: display flag*/}
                 <Popup>
                     <div className={style.popup}>
-                        <div className={style.flag} style={{ backgroundImage: `url(${country.countryInfo.flag})`}}/>
+                        <div className={style.flag} style={{backgroundImage: `url(${country.countryInfo.flag})`}}/>
                         <div className={style.countryName}>{country.country}</div>
                         <div className={style.confirmed}>Cases: {numeral(country.cases).format('0,0')}</div>
                         <div className={style.recovered}>Recovered: {numeral(country.recovered).format('0,0')}</div>
@@ -50,22 +51,22 @@ function Map({center, zoom, countriesInfo, caseType}) {
                     </div>
                 </Popup>
             </Circle>
- 
+
         ))
     );
 
 
- return (
-  <div className={cx(style.map, 'container')}>
-   <LeafletMap center={center} zoom={zoom}>
-    <TileLayer
-     url={'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
-     attribution={'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}
-    />
-    {showDataOnMap(countriesInfo, caseType)}
-
-   </LeafletMap>
-  </div>
- );
+    return (
+        <div className={cx(style.map, 'container')}>
+            <MapContainer center={center} zoom={zoom}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {showDataOnMap(countriesInfo, caseType)}
+            </MapContainer>
+        </div>
+    );
 }
+
 export default Map;

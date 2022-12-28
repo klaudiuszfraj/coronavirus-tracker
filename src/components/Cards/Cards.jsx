@@ -1,8 +1,6 @@
 import React from 'react';
 import {Card, CardContent, Typography, Grid} from "@mui/material";
 import CountUp from "react-countup";
-import cx from 'classnames';
-
 import style from './Cards.module.scss'
 
 
@@ -41,7 +39,7 @@ function Cards({data: {cases, recovered, deaths, updated}, onCaseType}) {
                           item
                           component={Card}
                           xs={12} sm={3}
-                          className={cx(style.card, card.class)}
+                          className={`${style.card} ${card.class}`}
                           onClick={() => onCaseType(card.caseType)}
                     >
                         <CardContent>

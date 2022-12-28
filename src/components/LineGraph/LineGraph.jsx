@@ -3,7 +3,6 @@ import {Bar} from 'react-chartjs-2';
 import {Chart as CartJS} from 'chart.js/auto'
 import numeral from 'numeral';
 import {fetchHistoricalAll} from "../../api";
-import cx from 'classnames';
 import style from './LineGraph.module.scss';
 
 const chartDate = (data, caseType = 'cases') => {
@@ -20,7 +19,6 @@ const chartDate = (data, caseType = 'cases') => {
         lastDataPoint = data[caseType][date];
     }
     return dataChart.slice(0, 400);
-    ;
 }
 
 function LineGraph({caseType}) {
@@ -80,7 +78,7 @@ function LineGraph({caseType}) {
 
     //todo:: change component name?, change graf colorm data? mew synax
     return (
-        <div className={cx(style.lineGraph, 'container')}>
+        <div className={`${style.lineGraph} container`}>
             {data?.length > 0 && (
                 <Bar data={{
                     datasets: [{

@@ -1,7 +1,6 @@
 import React from 'react';
 import {Card, Table} from "@mui/material";
 import style from './TableCountries.module.scss';
-import cx from 'classnames';
 
 function TableCountries({countriesInfo}) {
 
@@ -14,7 +13,7 @@ function TableCountries({countriesInfo}) {
     const sortedCountries = sort(countriesInfo);
 
     return (
-        <Card className={cx(style.table, 'container')}>
+        <Card className={`${style.table} container`}>
             <h2>Live Cases by Country</h2>
             <Table>
                 <tbody>

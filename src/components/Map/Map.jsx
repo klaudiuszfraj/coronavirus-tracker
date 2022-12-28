@@ -3,7 +3,6 @@ import {MapContainer, TileLayer, Circle, Popup} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import style from './Map.module.scss';
 import numeral from 'numeral';
-import cx from 'classnames';
 
 //todo:: repeated part
 const casesTypeColors = {
@@ -57,7 +56,7 @@ function Map({center, zoom, countriesInfo, caseType}) {
 
 
     return (
-        <div className={cx(style.map, 'container')}>
+        <div className={`${style.map} container`}>
             <MapContainer center={center} zoom={zoom}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

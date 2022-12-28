@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Line, Bar} from "react-chartjs-2";
 import {Chart as CartJS} from 'chart.js/auto'
 import style from './Chart.module.scss';
-import cx from 'classnames';
-import numeral from "numeral";
 
 function Chart({data: {cases, deaths, recovered, todayCases, todayRecovered, todayDeaths}, country}) {
 
@@ -63,7 +61,7 @@ function Chart({data: {cases, deaths, recovered, todayCases, todayRecovered, tod
     );
 
     return (
-        <div className={cx(style.chart, 'container')}>
+        <div className={`${style.chart} container`}>
             {country ? barChart : lineChart}
         </div>
     );
